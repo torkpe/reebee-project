@@ -33,6 +33,7 @@ export interface ShowState  {
   show: ShowDetails,
   watchList: ShowDetails[],
   hasShowInWatchList: boolean
+  isLoading: boolean
 }
 
 export interface ShowsResponse {

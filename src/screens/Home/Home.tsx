@@ -27,11 +27,16 @@ ListState
   }
 
   render() {
+    const { showlist } = this.state;
     return (
       <div className={styles.container}>
-        <ShowList
-          showlist={this.state.showlist}
-        />
+        {
+          showlist.length ?
+            <ShowList
+              showlist={this.state.showlist}
+            />
+            : 'You don\'t have any shows in your watchlist'
+        }
       </div>
     ) 
   }

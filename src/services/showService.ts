@@ -3,7 +3,7 @@ import Axios from "../utils/axios";
 
 
 export class ShowService extends Axios {
-  private url = 'http://api.tvmaze.com/';
+  private url = 'https://api.tvmaze.com/';
 
   async searchShows (searchKey: string): Promise<ShowDetails[]>{
     const response = await this.axios.get(`${this.url}search/shows?q=${searchKey}`);

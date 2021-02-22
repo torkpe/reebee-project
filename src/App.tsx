@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import "./App.scss";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import Home from "./screens/Home/Home";
 import Search from "./screens/Search/Search";
 import Show from "./screens/Show/Show";

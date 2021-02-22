@@ -35,28 +35,32 @@ export default class Show extends React.Component<
       },
       watchList: [],
       hasShowInWatchList: false,
+      isLoading: false,
     };
   }
 
   async componentDidMount() {
+    this.setState({
+      isLoading: true
+    })
     const showId = this.props.location.pathname.split("/")[2];
     const show = await this.showService.getShow(showId);
     const watchList = this.watchlistService.getWatchlist();
     this.setState({
       watchList
-    }, () => {
-      const hasShowInWatchList = this.watchListHasShow(showId);
-      this.setState({
-        show,
-        hasShowInWatchList,
-      });
-    })
+    });
+    const hasShowInWatchList = this.watchListHasShow(showId);
+    this.setState({
+      show,
+      hasShowInWatchList,
+      isLoading: false
+    });
   }
 
   addOrRemoveFromShow = (): void => {
     const { show, hasShowInWatchList, watchList } = this.state;
     if (hasShowInWatchList) {
-      const filteredWatchlist = watchList.filter((item) => item.id !== show.id);
+      const filteredWatchlist = watchList.filter((item) => item.id.toString() !== show.id.toString());
       this.setState({
         hasShowInWatchList: false,
       });
@@ -70,42 +74,44 @@ export default class Show extends React.Component<
   };
 
   watchListHasShow = (showId: string): boolean => {
-    return this.state.watchList.some((show) => show.id.toString() === showId);
+    return this.state.watchList.some((show) => show.id.toString() === showId.toString());
   };
 
   render() {
-    const { show, hasShowInWatchList } = this.state;
+    const { show, hasShowInWatchList, isLoading } = this.state;
     return (
-      <div className={styles.container}>
-        <div className={styles.showContainer}>
-          <div className={styles.show}>
-            <div className={styles.leftSide}>
-              <ShowImage
-                show={{
-                  link: this.state.show.image?.original,
-                  name: this.state.show.name,
-                  id: this.state.show.id,
-                }}
-              />
-              <button
-                onClick={this.addOrRemoveFromShow}
-                className={styles.button}
-              >
-                {hasShowInWatchList
-                  ? "Remove from watchlist"
-                  : "Add to watchlist"}
-              </button>
-            </div>
-            <div className={styles.rightSide}>
-              <h3>{show.name}</h3>
-              <div className={styles.genre}>{show.genres.join(", ")}</div>
-              <div className={styles.summary}>
-                {ReactHtmlParser(show.summary)}
+      !isLoading && (
+        <div className={styles.container}>
+          <div className={styles.showContainer}>
+            <div className={styles.show}>
+              <div className={styles.leftSide}>
+                <ShowImage
+                  show={{
+                    link: this.state.show.image?.original,
+                    name: this.state.show.name,
+                    id: this.state.show.id,
+                  }}
+                />
+                <button
+                  onClick={this.addOrRemoveFromShow}
+                  className={styles.button}
+                >
+                  {hasShowInWatchList
+                    ? "Remove from watchlist"
+                    : "Add to watchlist"}
+                </button>
+              </div>
+              <div className={styles.rightSide}>
+                <h3>{show.name}</h3>
+                <div className={styles.genre}>{show.genres.join(", ")}</div>
+                <div className={styles.summary}>
+                  {ReactHtmlParser(show.summary)}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )
     );
   }
 }
