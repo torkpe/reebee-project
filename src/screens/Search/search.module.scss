@@ -1,0 +1,24 @@
+@import '../../App.scss';
+
+.searchContainer {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+}
+
+.searchInput {
+  height: 5rem;
+  width: 60rem;
+  border-radius: 8px;
+  border: 1px solid $lightGrey;
+  color: $inputFontColor;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  @include sm {
+    width: 32rem;
+  }
+}
+
+.searchInput:focus {
+  box-shadow: 0px 2px 5px rgba(19, 100, 41, 0.08);
+}

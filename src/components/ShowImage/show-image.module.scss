@@ -1,0 +1,26 @@
+@import '../../App.scss';
+
+
+.image {
+  height: 25rem;
+  width: 20rem;
+  background: $lightGrey;
+  margin-left: 1rem;;
+  margin-right: 1rem;;
+  margin-top: 1rem;;
+  margin-bottom: 1rem;;
+  display: flex;
+}
+
+.showImage {
+  height: 25rem;
+  width: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.name {
+  color: $black;
+  text-align: center;
+}

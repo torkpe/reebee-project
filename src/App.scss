@@ -1,0 +1,30 @@
+$white: #ffff;
+$inputFontColor: #8D9091;
+$lightGrey: #EFEFEF;
+$black: #000000;
+$green:  #3C948B;
+$screen-sm-min: 300px;
+$screen-sm-max: 500px;
+
+.container {
+  padding: 3rem;
+}
+
+input {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  outline: $green;
+}
+
+@mixin sm {
+  @media (min-width: #{$screen-sm-min}) and (max-width: #{$screen-sm-max}) {
+      @content;
+  }
+}

@@ -1,0 +1,19 @@
+@import '../App.scss';
+
+
+.header {
+  height: 8rem;
+  background-color: $green;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.headerLink {
+  font-size: 1.4rem;
+  line-height: 2.8rem;
+  margin-right: 1rem;
+  color: $white;
+  font-weight: bolder;
+}
